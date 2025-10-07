@@ -27,8 +27,4 @@ public class Reservation {
     @ManyToMany
     private Set<Etudiant> etudiants;
 
-    // Relation N-1 : Plusieurs réservations concernent une seule chambre
-    @ManyToOne
-    private Chambre chambre;
-
 }

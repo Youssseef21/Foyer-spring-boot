@@ -30,7 +30,7 @@ public class Chambre {
     private Bloc bloc;
 
     // Relation 1-N : Une chambre peut avoir plusieurs réservations
-    @OneToMany(mappedBy = "chambre")
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<Reservation> reservations;
 
 }
