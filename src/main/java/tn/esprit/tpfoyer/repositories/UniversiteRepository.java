@@ -1,7 +1,10 @@
 package tn.esprit.tpfoyer.repositories;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import tn.esprit.tpfoyer.entity.*;
 
 @Repository
-public interface UniversiteRepository extends org.springframework.data.jpa.repository.JpaRepository<tn.esprit.tpfoyer.entity.Universite, Long> {
+public interface UniversiteRepository extends JpaRepository<Universite, Long> {
+
 }
