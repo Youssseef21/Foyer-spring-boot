@@ -11,6 +11,11 @@ import java.util.List;
 
 public class UniversiteServiceImpl implements IUniversiteService {
     final UniversiteRepository universiteRepository;
+
+    public UniversiteServiceImpl(UniversiteRepository universiteRepository) {
+        this.universiteRepository = universiteRepository;
+    }
+
     @Override
     public Universite ajouterUniversite(Universite u) {
         return universiteRepository.save(u);

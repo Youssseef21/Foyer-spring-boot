@@ -12,6 +12,10 @@ import java.util.List;
 public class EtudiantServiceImpl implements IEtudiantService {
     final EtudiantRepository etudiantRepository;
 
+    public EtudiantServiceImpl(EtudiantRepository etudiantRepository) {
+        this.etudiantRepository = etudiantRepository;
+    }
+
     @Override
     public Etudiant ajouterEtudiant(Etudiant e) {
         return etudiantRepository.save(e);

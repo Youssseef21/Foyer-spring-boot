@@ -9,7 +9,8 @@ import tn.esprit.tpfoyer.services.IBlocService;
 @RequestMapping("/blocController")
 @AllArgsConstructor
 public class BlocController {
-    final IBlocService blocService;
+    private IBlocService blocService;
+
     @PostMapping("/add-bloc")
     void addBloc(@RequestBody Bloc b){
         blocService.ajouterBloc(b);

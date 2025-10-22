@@ -10,6 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ChambreServiceImpl implements IChambreService {
     final ChambreRepository chambreRepository;
+
+    public ChambreServiceImpl(ChambreRepository chambreRepository) {
+        this.chambreRepository = chambreRepository;
+    }
+
     @Override
     public Chambre ajouterChambre(Chambre c) {
         return chambreRepository.save(c);

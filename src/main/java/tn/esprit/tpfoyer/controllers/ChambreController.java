@@ -1,6 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.services.IChambreService;
@@ -9,7 +10,12 @@ import tn.esprit.tpfoyer.services.IChambreService;
 @RequestMapping("/chambreController")
 @AllArgsConstructor
 public class ChambreController {
-    final IChambreService chambreService;
+
+    private final IChambreService  chambreService;
+    public ChambreController(IChambreService chambreService) {
+        this.chambreService = chambreService;
+    }
+
     @PostMapping("/add-chambre")
     void addChambre(@RequestBody Chambre c){
         chambreService.ajouterChambre(c);

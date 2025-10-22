@@ -10,6 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 public class BlocServiceImpl implements IBlocService {
     final BlocRepository blocRepository;
+
+    public BlocServiceImpl(BlocRepository blocRepository) {
+        this.blocRepository = blocRepository;
+    }
+
     @Override
     public Bloc ajouterBloc(Bloc b) {
         return blocRepository.save(b);

@@ -12,6 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 public class EtudiantController {
     final IEtudiantService etudiantService;
+
+    public EtudiantController(IEtudiantService etudiantService) {
+        this.etudiantService = etudiantService;
+    }
+
     @PostMapping("/add-etudiant")
     void addEtudiant(@RequestBody Etudiant e){
         etudiantService.ajouterEtudiant(e);

@@ -10,6 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 public class ReservationServiceImpl implements IReservationService {
     final ReservationRepository reservationRepository;
+
+    public ReservationServiceImpl(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
+
     @Override
     public Reservation ajouterReservation(Reservation r) {
         return reservationRepository.save(r);

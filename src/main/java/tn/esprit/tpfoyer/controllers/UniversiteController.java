@@ -10,6 +10,11 @@ import tn.esprit.tpfoyer.services.IUniversiteService;
 @AllArgsConstructor
 public class UniversiteController {
     final IUniversiteService universiteService;
+
+    public UniversiteController(IUniversiteService universiteService) {
+        this.universiteService = universiteService;
+    }
+
     @PostMapping("add-universite")
     Universite addUniversite(@RequestBody Universite u){
         return universiteService.ajouterUniversite(u);

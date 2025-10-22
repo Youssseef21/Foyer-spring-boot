@@ -11,6 +11,11 @@ import tn.esprit.tpfoyer.services.IFoyerService;
 @AllArgsConstructor
 public class FoyerController {
     final IFoyerService foyerService;
+
+    public FoyerController(IFoyerService foyerService) {
+        this.foyerService = foyerService;
+    }
+
     @PostMapping("/add-foyer")
     Foyer addFoyer(@RequestBody Foyer f){
         return foyerService.ajouterFoyer(f);

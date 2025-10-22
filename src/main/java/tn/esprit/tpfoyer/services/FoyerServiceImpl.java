@@ -10,6 +10,11 @@ import java.util.List;
 @AllArgsConstructor
 public class FoyerServiceImpl implements IFoyerService {
     final FoyerRepository foyerRepository;
+
+    public FoyerServiceImpl(FoyerRepository foyerRepository) {
+        this.foyerRepository = foyerRepository;
+    }
+
     @Override
     public Foyer ajouterFoyer(Foyer f) {
         return  foyerRepository.save(f);

@@ -10,6 +10,11 @@ import tn.esprit.tpfoyer.services.IReservationService;
 @AllArgsConstructor
 public class ReservationController {
     final IReservationService reservationService;
+
+    public ReservationController(IReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
+
     @PostMapping("/add-reservation")
     void addReservation(@RequestBody Reservation r){
         reservationService.ajouterReservation(r);
