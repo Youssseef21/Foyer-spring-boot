@@ -7,7 +7,7 @@ import tn.esprit.tpfoyer.repositories.ReservationRepository;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+
 public class ReservationServiceImpl implements IReservationService {
     final ReservationRepository reservationRepository;
 

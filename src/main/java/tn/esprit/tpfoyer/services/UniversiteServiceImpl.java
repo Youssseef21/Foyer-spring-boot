@@ -7,7 +7,7 @@ import tn.esprit.tpfoyer.repositories.UniversiteRepository;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+
 
 public class UniversiteServiceImpl implements IUniversiteService {
     final UniversiteRepository universiteRepository;

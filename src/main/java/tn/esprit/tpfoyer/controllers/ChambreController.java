@@ -1,35 +1,43 @@
 package tn.esprit.tpfoyer.controllers;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import tn.esprit.tpfoyer.dto.ChambreDto;
 import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.services.IChambreService;
+import tn.esprit.tpfoyer.services.ChambreServiceImpl;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/chambreController")
-@AllArgsConstructor
+@Tag(name = "Chambre Management")
+@RequiredArgsConstructor
 public class ChambreController {
+    private final ChambreServiceImpl chambreService;
 
-    private final IChambreService  chambreService;
-    public ChambreController(IChambreService chambreService) {
-        this.chambreService = chambreService;
-    }
-
+    @Operation(summary = "Add a new Chambre")
     @PostMapping("/add-chambre")
-    void addChambre(@RequestBody Chambre c){
-        chambreService.ajouterChambre(c);
+    Chambre addChambre(@RequestBody Chambre c) {
+        return chambreService.ajouterChambre(c);
     }
-    @PutMapping("/update-chambre")
-    void updateChambre(@RequestBody Chambre c){
-        chambreService.ajouterChambre(c);}
-    @DeleteMapping("/delete-chambre/{id}")
-    void deleteChambre(@PathVariable("id") Long id){
-        chambreService.supprimerChambre(id);}
+
+    @Operation(summary = "Get all Chambres")
     @GetMapping("/get-all-chambres")
-    java.util.List<Chambre> getAllChambres(){
-        return chambreService.afficherChambres();}
-    @GetMapping("/get-chambre-by-id/{id}")
-    Chambre getChambreById(@PathVariable("id") Long id){
-        return chambreService.afficherChambreById(id);}
+    List<Chambre> getAllChambres() {
+        return chambreService.afficherChambres();
+    }
+
+    @Operation(summary = "Get all Chambres as DTOs (type and bloc name)")
+    @GetMapping("/get-all-chambres-dto")
+    List<ChambreDto> getAllChambresDto() {
+        return chambreService.afficherChambresDto();
+    }
+
+    @Operation(summary = "Get Chambre by ID as DTO")
+    @GetMapping("/get-chambre-dto-by-id/{id}")
+    ChambreDto getChambreDtoById(@PathVariable("id") Long id) {
+        return chambreService.afficherChambreDtoById(id);
+    }
 }

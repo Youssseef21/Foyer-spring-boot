@@ -7,7 +7,7 @@ import tn.esprit.tpfoyer.services.IUniversiteService;
 
 @RestController
 @RequestMapping("/universiteController")
-@AllArgsConstructor
+
 public class UniversiteController {
     final IUniversiteService universiteService;
 

@@ -7,7 +7,7 @@ import tn.esprit.tpfoyer.repositories.FoyerRepository;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+
 public class FoyerServiceImpl implements IFoyerService {
     final FoyerRepository foyerRepository;
 

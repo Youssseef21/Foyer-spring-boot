@@ -7,7 +7,7 @@ import tn.esprit.tpfoyer.services.IReservationService;
 
 @RestController
 @RequestMapping("/reservations")
-@AllArgsConstructor
+
 public class ReservationController {
     final IReservationService reservationService;
 

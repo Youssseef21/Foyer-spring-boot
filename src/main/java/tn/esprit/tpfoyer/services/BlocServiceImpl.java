@@ -1,13 +1,14 @@
 package tn.esprit.tpfoyer.services;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.repositories.BlocRepository;
+import tn.esprit.tpfoyer.dto.BlocDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
-@AllArgsConstructor
 public class BlocServiceImpl implements IBlocService {
     final BlocRepository blocRepository;
 
@@ -34,5 +35,22 @@ public class BlocServiceImpl implements IBlocService {
     @Override
     public List<Bloc> afficherBlocs() {
         return blocRepository.findAll();
+    }
+
+    // Conversion Entité -> DTO
+    private BlocDto convertToDto(Bloc bloc) {
+        return new BlocDto(bloc.getNomBloc());
+    }
+
+    public List<BlocDto> afficherBlocsDto() {
+        return blocRepository.findAll().stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    public BlocDto afficherBlocDtoById(Long id) {
+        Bloc bloc = blocRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID: " + id));
+        return convertToDto(bloc);
     }
 }

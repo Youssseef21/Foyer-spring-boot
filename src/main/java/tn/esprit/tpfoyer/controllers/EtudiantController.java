@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/EtudiantController")
-@AllArgsConstructor
+
 public class EtudiantController {
     final IEtudiantService etudiantService;
 

@@ -1,5 +1,7 @@
 package tn.esprit.tpfoyer.controllers;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,14 +10,15 @@ import tn.esprit.tpfoyer.services.IFoyerService;
 
 @RestController
 @RequestMapping("/foyerController")
-@AllArgsConstructor
+@Tag(name = "Foyer Management")
+
 public class FoyerController {
     final IFoyerService foyerService;
 
     public FoyerController(IFoyerService foyerService) {
         this.foyerService = foyerService;
     }
-
+    @Operation(summary = "Add a new Foyer")
     @PostMapping("/add-foyer")
     Foyer addFoyer(@RequestBody Foyer f){
         return foyerService.ajouterFoyer(f);
