@@ -35,4 +35,14 @@ public class EtudiantController {
         return etudiantService.afficherEtudiantById(id);}
 
 
+    @PutMapping("/assignEtudiantToReservation/{etudiantId}/{reservationId}")
+    void assignEtudiantToReservation(@PathVariable("etudiantId") Long etudiantId,@PathVariable("reservationId") String reservationId){
+        etudiantService.assignEtudiantToReservation(etudiantId,reservationId);
+    }
+    @PutMapping("/removeEtudiantFromReservation/{etudiantId}/{reservationId}")
+    void removeEtudiantFromReservation(@PathVariable("etudiantId") Long etudiantId,@PathVariable("reservationId") String reservationId){
+        etudiantService.removeEtudiantFromReservation(etudiantId,reservationId);
+    }
+
+
 }

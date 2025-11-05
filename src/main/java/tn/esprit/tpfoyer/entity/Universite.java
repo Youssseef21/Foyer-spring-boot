@@ -24,7 +24,7 @@ public class Universite {
         private String adresse;
 
         // Relation 1-1 avec Foyer (une université possède un foyer)
-        @OneToOne
+        @OneToOne(cascade = CascadeType.ALL)
         private Foyer foyer;
 
 

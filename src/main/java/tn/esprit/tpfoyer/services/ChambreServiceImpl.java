@@ -38,6 +38,7 @@ public class ChambreServiceImpl implements IChambreService {
 
     @Override
     public List<ChambreDto> afficherChambresDto() {
+
         return chambreMapper.toDtoList(chambreRepository.findAll());
     }
 

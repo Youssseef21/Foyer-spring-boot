@@ -50,7 +50,7 @@ public class BlocServiceImpl implements IBlocService {
 
     public BlocDto afficherBlocDtoById(Long id) {
         Bloc bloc = blocRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Bloc non trouvé avec l'ID: " + id));
+                .get();
         return convertToDto(bloc);
     }
 }

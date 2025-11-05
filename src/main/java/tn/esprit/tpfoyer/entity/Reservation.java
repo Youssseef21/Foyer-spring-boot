@@ -24,7 +24,7 @@ public class Reservation {
     private boolean estValide;
 
     // Relation N-N : Une réservation peut concerner plusieurs étudiants et vice-versa
-    @ManyToMany
-    private Set<Etudiant> etudiants;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private Set<Etudiant> etudiants =new java.util.HashSet<Etudiant>();
 
 }

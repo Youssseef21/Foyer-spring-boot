@@ -1,5 +1,6 @@
 package tn.esprit.tpfoyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +21,10 @@ public class Foyer {
 
     private String nomFoyer;
     private Long capaciteFoyer;
-
+    @OneToOne(mappedBy = "foyer", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @JsonIgnore
+    private Universite universite;
     // Relation 1-N : Un foyer contient plusieurs blocs
     @OneToMany(mappedBy = "foyer")
     private Set<Bloc> blocs;

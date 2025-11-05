@@ -28,5 +28,5 @@ public class Etudiant {
 
     // Relation N-N inverse avec Reservation
     @ManyToMany(mappedBy = "etudiants")
-    private Set<Reservation> reservations;
+    private Set<Reservation> reservations =new java.util.HashSet<Reservation>();
 }

@@ -9,4 +9,8 @@ public interface IUniversiteService {
     void supprimerUniversite(Long id);
     Universite afficherUniversiteById(Long id);
     List<Universite> afficherUniversites();
+    Universite assignUniversiteToFoyer(Long universityId, Long idF);
+    Universite addUniversiteDandAssignToFoyer(Universite u, Long idF);
+    Universite addUniversiteandFoyerANdAssignToFoyer(Universite u);
+    Universite removeUniversiteFromFoyer(Long universityId);
 }

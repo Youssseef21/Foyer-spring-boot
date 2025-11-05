@@ -34,4 +34,5 @@ public class FoyerServiceImpl implements IFoyerService {
     public Foyer afficherFoyerById(Long id) {
         return foyerRepository.findById(id).get();
     }
+
 }
