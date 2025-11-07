@@ -2,20 +2,22 @@ package tn.esprit.tpfoyer.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.dto.BlocDto;
 import tn.esprit.tpfoyer.entity.Bloc;
-import tn.esprit.tpfoyer.services.BlocServiceImpl;
+import tn.esprit.tpfoyer.services.IBlocService;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/blocController")
 @Tag(name = "Bloc Management")
-@RequiredArgsConstructor
 public class BlocController {
-    private final BlocServiceImpl blocService;
+    final IBlocService blocService;
+
+    public BlocController(IBlocService blocService) {
+        this.blocService = blocService;
+    }
 
     @Operation(summary = "Add a new Bloc")
     @PostMapping("/add-bloc")
@@ -57,5 +59,26 @@ public class BlocController {
     @GetMapping("/get-bloc-dto-by-id/{id}")
     BlocDto getBlocDtoById(@PathVariable("id") Long id) {
         return blocService.afficherBlocDtoById(id);
+    }
+
+    @Operation(summary = "Créer un Bloc avec son Foyer")
+    @PostMapping("/creer-bloc-avec-foyer")
+    void creerBlocAvecFoyer(@RequestBody Bloc bloc,
+                           @RequestParam String nomFoyer, 
+                           @RequestParam Long capaciteFoyer) {
+        blocService.creerBlocAvecFoyer(bloc, nomFoyer, capaciteFoyer);
+    }
+
+    @Operation(summary = "Affecter un Bloc à un Foyer")
+    @PutMapping("/affecter-bloc-foyer/{idBloc}/{idFoyer}")
+    void affecterBlocAFoyer(@PathVariable("idBloc") Long idBloc, 
+                           @PathVariable("idFoyer") Long idFoyer) {
+        blocService.affecterBlocAFoyer(idBloc, idFoyer);
+    }
+
+    @Operation(summary = "Désaffecter un Bloc de son Foyer")
+    @PutMapping("/desaffecter-bloc-foyer/{idBloc}")
+    void desaffecterBlocDeFoyer(@PathVariable("idBloc") Long idBloc) {
+        blocService.desaffecterBlocDeFoyer(idBloc);
     }
 }

@@ -1,7 +1,7 @@
 package tn.esprit.tpfoyer.services;
 
-import tn.esprit.tpfoyer.dto.ChambreDto;
 import tn.esprit.tpfoyer.entity.Chambre;
+import tn.esprit.tpfoyer.entity.Reservation;
 
 import java.util.List;
 
@@ -10,6 +10,9 @@ public interface IChambreService {
     void supprimerChambre(Long id);
     Chambre afficherChambreById(Long id);
     List<Chambre> afficherChambres();
-    List<ChambreDto> afficherChambresDto();
-    ChambreDto afficherChambreDtoById(Long id);
+    
+    // Exercice 2 - Affectations Chambre-Réservation
+    Chambre creerChambreAvecReservation(Chambre chambre, Reservation reservation);
+    Chambre reserverChambre(Long idChambre, String idReservation);
+    Chambre annulerReservation(Long idChambre, String idReservation);
 }

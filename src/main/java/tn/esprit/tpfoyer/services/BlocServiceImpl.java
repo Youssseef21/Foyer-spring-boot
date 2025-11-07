@@ -2,7 +2,9 @@ package tn.esprit.tpfoyer.services;
 
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Bloc;
+import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.repositories.BlocRepository;
+import tn.esprit.tpfoyer.repositories.FoyerRepository;
 import tn.esprit.tpfoyer.dto.BlocDto;
 
 import java.util.List;
@@ -11,9 +13,11 @@ import java.util.stream.Collectors;
 @Service
 public class BlocServiceImpl implements IBlocService {
     final BlocRepository blocRepository;
+    final FoyerRepository foyerRepository;
 
-    public BlocServiceImpl(BlocRepository blocRepository) {
+    public BlocServiceImpl(BlocRepository blocRepository, FoyerRepository foyerRepository) {
         this.blocRepository = blocRepository;
+        this.foyerRepository = foyerRepository;
     }
 
     @Override
@@ -24,7 +28,6 @@ public class BlocServiceImpl implements IBlocService {
     @Override
     public void supprimerBloc(Long id) {
         blocRepository.deleteById(id);
-
     }
 
     @Override
@@ -42,15 +45,46 @@ public class BlocServiceImpl implements IBlocService {
         return new BlocDto(bloc.getNomBloc());
     }
 
+    @Override
     public List<BlocDto> afficherBlocsDto() {
         return blocRepository.findAll().stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());
     }
 
+    @Override
     public BlocDto afficherBlocDtoById(Long id) {
-        Bloc bloc = blocRepository.findById(id)
-                .get();
+        Bloc bloc = blocRepository.findById(id).get();
         return convertToDto(bloc);
+    }
+
+    @Override
+    public Bloc creerBlocAvecFoyer(Bloc bloc, String nomFoyer, Long capaciteFoyer) {
+        Foyer foyer = new Foyer();
+        foyer.setNomFoyer(nomFoyer);
+        foyer.setCapaciteFoyer(capaciteFoyer);
+        
+        Foyer savedFoyer = foyerRepository.save(foyer);
+        bloc.setFoyer(savedFoyer);
+        
+        return blocRepository.save(bloc);
+    }
+
+    @Override
+    public Bloc affecterBlocAFoyer(Long idBloc, Long idFoyer) {
+        Bloc bloc = blocRepository.findById(idBloc).get();
+        Foyer foyer = foyerRepository.findById(idFoyer).get();
+        
+        bloc.setFoyer(foyer);
+        
+        return blocRepository.save(bloc);
+    }
+
+    @Override
+    public Bloc desaffecterBlocDeFoyer(Long idBloc) {
+        Bloc bloc = blocRepository.findById(idBloc).get();
+        bloc.setFoyer(null);
+        
+        return blocRepository.save(bloc);
     }
 }

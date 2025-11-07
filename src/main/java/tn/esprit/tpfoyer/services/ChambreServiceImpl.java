@@ -1,19 +1,23 @@
 package tn.esprit.tpfoyer.services;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.tpfoyer.dto.ChambreDto;
 import tn.esprit.tpfoyer.entity.Chambre;
-import tn.esprit.tpfoyer.mapper.ChambreMapper;
+import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.repositories.ChambreRepository;
+import tn.esprit.tpfoyer.repositories.ReservationRepository;
 
+import java.util.HashSet;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ChambreServiceImpl implements IChambreService {
-    private final ChambreRepository chambreRepository;
-    private final ChambreMapper chambreMapper;
+    final ChambreRepository chambreRepository;
+    final ReservationRepository reservationRepository;
+
+    public ChambreServiceImpl(ChambreRepository chambreRepository, ReservationRepository reservationRepository) {
+        this.chambreRepository = chambreRepository;
+        this.reservationRepository = reservationRepository;
+    }
 
     @Override
     public Chambre ajouterChambre(Chambre c) {
@@ -27,8 +31,7 @@ public class ChambreServiceImpl implements IChambreService {
 
     @Override
     public Chambre afficherChambreById(Long id) {
-        return chambreRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Chambre non trouvée avec l'ID: " + id));
+        return chambreRepository.findById(id).get();
     }
 
     @Override
@@ -37,14 +40,41 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     @Override
-    public List<ChambreDto> afficherChambresDto() {
-
-        return chambreMapper.toDtoList(chambreRepository.findAll());
+    public Chambre creerChambreAvecReservation(Chambre chambre, Reservation reservation) {
+        Reservation savedReservation = reservationRepository.save(reservation);
+        
+        if (chambre.getReservations() == null) {
+            chambre.setReservations(new HashSet<>());
+        }
+        
+        chambre.getReservations().add(savedReservation);
+        
+        return chambreRepository.save(chambre);
     }
 
     @Override
-    public ChambreDto afficherChambreDtoById(Long id) {
-        Chambre chambre = afficherChambreById(id);
-        return chambreMapper.toDto(chambre);
+    public Chambre reserverChambre(Long idChambre, String idReservation) {
+        Chambre chambre = chambreRepository.findById(idChambre).get();
+        Reservation reservation = reservationRepository.findById(idReservation).get();
+        
+        if (chambre.getReservations() == null) {
+            chambre.setReservations(new HashSet<>());
+        }
+        
+        chambre.getReservations().add(reservation);
+        
+        return chambreRepository.save(chambre);
+    }
+
+    @Override
+    public Chambre annulerReservation(Long idChambre, String idReservation) {
+        Chambre chambre = chambreRepository.findById(idChambre).get();
+        Reservation reservation = reservationRepository.findById(idReservation).get();
+        
+        if (chambre.getReservations() != null) {
+            chambre.getReservations().remove(reservation);
+        }
+        
+        return chambreRepository.save(chambre);
     }
 }
