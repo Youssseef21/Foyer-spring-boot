@@ -54,25 +54,9 @@ public class ChambreController {
 
     @Operation(summary = "Créer une Chambre avec une Réservation")
     @PostMapping("/creer-chambre-avec-reservation")
-    public void  creerChambreAvecReservation(
-            @RequestParam Long numeroChambre,
-            @RequestParam Typechambre typeC,
-            @RequestParam String idReservation,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date anneeUniversitaire,
-            @RequestParam boolean estValide) {
+    public void  creerChambreAvecReservation(@RequestBody Chambre Chambre) {
 
-        // Création des objets
-        Chambre chambre = new Chambre();
-        chambre.setNumeroChambre(numeroChambre);
-        chambre.setTypeC(typeC);
-
-        Reservation reservation = new Reservation();
-        reservation.setIdReservation(idReservation);
-        reservation.setAnneeUniversitaire(anneeUniversitaire);
-        reservation.setEstValide(estValide);
-
-        // Appel du service
-        Chambre savedChambre = chambreService.creerChambreAvecReservation(chambre, reservation);
+        chambreService.creerChambreAvecReservation(Chambre) ;
 
     }
 

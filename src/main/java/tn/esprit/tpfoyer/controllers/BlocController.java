@@ -63,10 +63,8 @@ public class BlocController {
 
     @Operation(summary = "Créer un Bloc avec son Foyer")
     @PostMapping("/creer-bloc-avec-foyer")
-    void creerBlocAvecFoyer(@RequestBody Bloc bloc,
-                           @RequestParam String nomFoyer, 
-                           @RequestParam Long capaciteFoyer) {
-        blocService.creerBlocAvecFoyer(bloc, nomFoyer, capaciteFoyer);
+    void creerBlocAvecFoyer(@RequestBody Bloc bloc) {
+        blocService.creerBlocAvecFoyer(bloc);
     }
 
     @Operation(summary = "Affecter un Bloc à un Foyer")

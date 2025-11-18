@@ -12,7 +12,7 @@ public interface IChambreService {
     List<Chambre> afficherChambres();
     
     // Exercice 2 - Affectations Chambre-Réservation
-    Chambre creerChambreAvecReservation(Chambre chambre, Reservation reservation);
+    Chambre creerChambreAvecReservation(Chambre chambre);
     Chambre reserverChambre(Long idChambre, String idReservation);
     Chambre annulerReservation(Long idChambre, String idReservation);
 }

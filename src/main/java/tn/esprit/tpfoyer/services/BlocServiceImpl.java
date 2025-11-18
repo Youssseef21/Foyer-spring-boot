@@ -59,15 +59,8 @@ public class BlocServiceImpl implements IBlocService {
     }
 
     @Override
-    public Bloc creerBlocAvecFoyer(Bloc bloc, String nomFoyer, Long capaciteFoyer) {
-        Foyer foyer = new Foyer();
-        foyer.setNomFoyer(nomFoyer);
-        foyer.setCapaciteFoyer(capaciteFoyer);
-        
-        Foyer savedFoyer = foyerRepository.save(foyer);
-        bloc.setFoyer(savedFoyer);
-        
-        return blocRepository.save(bloc);
+    public Bloc creerBlocAvecFoyer(Bloc bloc) {
+               return blocRepository.save(bloc);
     }
 
     @Override

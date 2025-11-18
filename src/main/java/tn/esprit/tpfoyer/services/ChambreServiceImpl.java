@@ -40,16 +40,8 @@ public class ChambreServiceImpl implements IChambreService {
     }
 
     @Override
-    public Chambre creerChambreAvecReservation(Chambre chambre, Reservation reservation) {
-        Reservation savedReservation = reservationRepository.save(reservation);
-        
-        if (chambre.getReservations() == null) {
-            chambre.setReservations(new HashSet<>());
-        }
-        
-        chambre.getReservations().add(savedReservation);
-        
-        return chambreRepository.save(chambre);
+    public Chambre creerChambreAvecReservation(Chambre chambre) {
+                return chambreRepository.save(chambre);
     }
 
     @Override

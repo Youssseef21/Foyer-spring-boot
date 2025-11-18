@@ -16,7 +16,7 @@ public interface IBlocService {
     BlocDto afficherBlocDtoById(Long id);
     
     // Exercice 1 - Affectations Bloc-Foyer
-    Bloc creerBlocAvecFoyer(Bloc bloc, String nomFoyer, Long capaciteFoyer);
+    Bloc creerBlocAvecFoyer(Bloc bloc);
     Bloc affecterBlocAFoyer(Long idBloc, Long idFoyer);
     Bloc desaffecterBlocDeFoyer(Long idBloc);
 }
