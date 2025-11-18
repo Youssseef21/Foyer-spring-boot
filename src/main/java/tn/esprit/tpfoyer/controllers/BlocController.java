@@ -79,4 +79,17 @@ public class BlocController {
     void desaffecterBlocDeFoyer(@PathVariable("idBloc") Long idBloc) {
         blocService.desaffecterBlocDeFoyer(idBloc);
     }
+    @GetMapping("/blocs-without-foyer")
+    List<Bloc> getBlocsWithoutFoyer() {
+        return blocService.findByFoyerIsNull();}
+    @GetMapping("/blocs-with-capacity-greater-than/{capacity}")
+    List<Bloc> getBlocsWithCapacityGreaterThan(@PathVariable("capacity") int capacity) {
+        return blocService.findByCapaciteBlocGreaterThan(capacity);}
+    @GetMapping("/blocs-starting-with/{start}")
+    List<Bloc> getBlocsStartingWith(@PathVariable("start") String start) {
+        return blocService.findByNomBlocStartingWith(start);}
+    @GetMapping("/blocs-starting-with-and-capacity-greater-than/{start}/{capacity}")
+    List<Bloc> getBlocsStartingWithAndCapacityGreaterThan(@PathVariable("start") String start,
+                                                          @PathVariable("capacity") int capacity) {
+        return blocService.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(start, capacity);}
 }

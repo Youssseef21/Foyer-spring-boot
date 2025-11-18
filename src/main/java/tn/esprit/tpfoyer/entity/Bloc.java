@@ -20,11 +20,10 @@ public class Bloc {
     private String nomBloc;
     private Long capaciteBloc;
 
-    // Relation N-1 : Plusieurs blocs appartiennent à un foyer
+
     @ManyToOne(cascade = CascadeType.ALL)
     private Foyer foyer;
 
-    // Relation 1-N : Un bloc contient plusieurs chambres
     @OneToMany(mappedBy = "bloc")
     private java.util.Set<Chambre> chambres;
 }

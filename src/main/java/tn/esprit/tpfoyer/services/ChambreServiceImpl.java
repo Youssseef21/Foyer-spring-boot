@@ -3,11 +3,13 @@ package tn.esprit.tpfoyer.services;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.Reservation;
+import tn.esprit.tpfoyer.entity.Typechambre;
 import tn.esprit.tpfoyer.repositories.ChambreRepository;
 import tn.esprit.tpfoyer.repositories.ReservationRepository;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ChambreServiceImpl implements IChambreService {
@@ -66,7 +68,13 @@ public class ChambreServiceImpl implements IChambreService {
         if (chambre.getReservations() != null) {
             chambre.getReservations().remove(reservation);
         }
-        
+
         return chambreRepository.save(chambre);
+    }
+    public List<Chambre> findByTypeC(Typechambre type) {
+        return chambreRepository.findByTypeC(type);
+    }
+    public Optional<Chambre> findByNumeroChambre(Long numeroChambre) {
+        return chambreRepository.findByNumeroChambre(numeroChambre);
     }
 }

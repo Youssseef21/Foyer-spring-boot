@@ -80,4 +80,18 @@ public class BlocServiceImpl implements IBlocService {
         
         return blocRepository.save(bloc);
     }
+    @Override
+    public List<Bloc> findByFoyerIsNull() {
+        return blocRepository.findByFoyerIsNull();
+    }
+    @Override
+    public List<Bloc> findByCapaciteBlocGreaterThan(int capacite) {
+        return blocRepository.findByCapaciteBlocGreaterThan(30);}
+    @Override
+    public List<Bloc> findByNomBlocStartingWith(String start) {
+        return blocRepository.findByNomBlocStartingWith(start); }
+    @Override
+    public List<Bloc> findByNomBlocStartingWithAndCapaciteBlocGreaterThan(String start, int capacite) {
+        return blocRepository.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(start, capacite);
+    }
 }

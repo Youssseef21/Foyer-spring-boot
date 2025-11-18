@@ -74,4 +74,10 @@ public class ChambreController {
                            @PathVariable("idReservation") String idReservation) {
         chambreService.annulerReservation(idChambre, idReservation);
     }
+    @GetMapping("/get-chambres-by-type/{type}")
+    List<Chambre> getChambresByType(@PathVariable("type") Typechambre type) {
+        return chambreService.findByTypeC(type);    }
+    @GetMapping("/chambrenum/{numeroChambre}")
+    Chambre getChambreByNumero(@PathVariable("numeroChambre") Long numeroChambre) {
+        return chambreService.findByNumeroChambre(numeroChambre).orElse(null);}
 }

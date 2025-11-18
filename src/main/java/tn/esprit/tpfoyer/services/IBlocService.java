@@ -14,7 +14,10 @@ public interface IBlocService {
     // DTO methods
     List<BlocDto> afficherBlocsDto();
     BlocDto afficherBlocDtoById(Long id);
-    
+    List<Bloc> findByFoyerIsNull();
+    List<Bloc> findByCapaciteBlocGreaterThan(int capacite);
+    List<Bloc> findByNomBlocStartingWith(String start);
+    List<Bloc> findByNomBlocStartingWithAndCapaciteBlocGreaterThan(String start, int capacite);
     // Exercice 1 - Affectations Bloc-Foyer
     Bloc creerBlocAvecFoyer(Bloc bloc);
     Bloc affecterBlocAFoyer(Long idBloc, Long idFoyer);

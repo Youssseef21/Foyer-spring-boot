@@ -25,7 +25,6 @@ public class Foyer {
     @ToString.Exclude
     @JsonIgnore
     private Universite universite;
-    // Relation 1-N : Un foyer contient plusieurs blocs
     @OneToMany(mappedBy = "foyer")
     private Set<Bloc> blocs;
 }
