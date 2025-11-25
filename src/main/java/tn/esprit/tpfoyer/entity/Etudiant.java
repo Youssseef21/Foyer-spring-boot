@@ -1,5 +1,6 @@
 package tn.esprit.tpfoyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,5 +29,6 @@ public class Etudiant {
 
     // Relation N-N inverse avec Reservation
     @ManyToMany(mappedBy = "etudiants")
+    @JsonIgnore
     private Set<Reservation> reservations =new java.util.HashSet<Reservation>();
 }

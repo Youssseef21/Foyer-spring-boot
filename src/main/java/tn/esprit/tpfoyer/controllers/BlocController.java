@@ -61,11 +61,11 @@ public class BlocController {
         return blocService.afficherBlocDtoById(id);
     }
 
-    @Operation(summary = "Créer un Bloc avec son Foyer")
-    @PostMapping("/creer-bloc-avec-foyer")
-    void creerBlocAvecFoyer(@RequestBody Bloc bloc) {
-        blocService.creerBlocAvecFoyer(bloc);
-    }
+//    @Operation(summary = "Créer un Bloc avec son Foyer")
+//    @PostMapping("/creer-bloc-avec-foyer")
+//    void creerBlocAvecFoyer(@RequestBody Bloc bloc) {
+//        blocService.creerBlocAvecFoyer(bloc);
+//    }
 
     @Operation(summary = "Affecter un Bloc à un Foyer")
     @PutMapping("/affecter-bloc-foyer/{idBloc}/{idFoyer}")

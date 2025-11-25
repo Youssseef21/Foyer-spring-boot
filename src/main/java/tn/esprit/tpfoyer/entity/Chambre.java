@@ -1,5 +1,6 @@
 package tn.esprit.tpfoyer.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -27,10 +28,12 @@ public class Chambre {
 
     // Relation N-1 : Plusieurs chambres appartiennent à un bloc
     @ManyToOne
+    @JsonIgnore
     private Bloc bloc;
 
     // Relation 1-N : Une chambre peut avoir plusieurs réservations
     @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Reservation> reservations;
 
 }

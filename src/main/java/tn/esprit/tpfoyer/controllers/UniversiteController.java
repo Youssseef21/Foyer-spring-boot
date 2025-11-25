@@ -40,10 +40,10 @@ public class UniversiteController {
     void assignUniversiteToFoyer(@PathVariable("univers") Long univers,@PathVariable("idF") Long idF){
         universiteService.assignUniversiteToFoyer(univers,idF);
     }
-    @PostMapping("/add-universite-and-foyer")
-    Universite addUniversiteandFoyerANdAssignToFoyer(@RequestBody Universite u){
-        return universiteService.addUniversiteandFoyerANdAssignToFoyer(u);
-    }
+//    @PostMapping("/add-universite-and-foyer")
+//    Universite addUniversiteandFoyerANdAssignToFoyer(@RequestBody Universite u){
+//        return universiteService.addUniversiteandFoyerANdAssignToFoyer(u);
+//    }
     @PutMapping("/remove-universite-from-foyer/{universityId}")
     void removeUniversiteFromFoyer(@PathVariable("universityId") Long universityId){
         universiteService.removeUniversiteFromFoyer(universityId);

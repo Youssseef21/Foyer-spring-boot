@@ -52,13 +52,13 @@ public class ChambreController {
         return chambreService.afficherChambreById(id);
     }
 
-    @Operation(summary = "Créer une Chambre avec une Réservation")
-    @PostMapping("/creer-chambre-avec-reservation")
-    public void  creerChambreAvecReservation(@RequestBody Chambre Chambre) {
-
-        chambreService.creerChambreAvecReservation(Chambre) ;
-
-    }
+//    @Operation(summary = "Créer une Chambre avec une Réservation")
+//    @PostMapping("/creer-chambre-avec-reservation")
+//    public void  creerChambreAvecReservation(@RequestBody Chambre Chambre) {
+//
+//        chambreService.creerChambreAvecReservation(Chambre) ;
+//
+//    }
 
 
     @Operation(summary = "Affecter une Réservation")
