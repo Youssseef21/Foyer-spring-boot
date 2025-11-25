@@ -9,5 +9,7 @@ Foyer ajouterFoyer(Foyer f);
 void supprimerFoyer(Long id);
 List<Foyer> afficherFoyers();
 Foyer afficherFoyerById(Long id);
+List<Foyer> findByNomFoyer(String nomFoyer);
+List<Foyer> extraireFoyerduBloc(String nomBloc);
 
 }

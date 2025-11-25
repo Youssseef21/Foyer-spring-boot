@@ -63,6 +63,12 @@ public class UniversiteServiceImpl implements IUniversiteService {
         u.setFoyer(null);
         return universiteRepository.save(u);
     }
+    @Override
+    public List<Universite> findByNomUniversite(String nomUniversite) {
+        return universiteRepository.findByNomUniversite(nomUniversite);}
+    @Override
+    public int updateUniversiteByAdresse(String adresse, Long idUniversite) {
+        return universiteRepository.updateUniversiteByAdresse(adresse, idUniversite);}
 
 
 

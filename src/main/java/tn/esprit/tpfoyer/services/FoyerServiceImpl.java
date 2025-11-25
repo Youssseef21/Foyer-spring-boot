@@ -34,5 +34,12 @@ public class FoyerServiceImpl implements IFoyerService {
     public Foyer afficherFoyerById(Long id) {
         return foyerRepository.findById(id).get();
     }
+    @Override
+    public List<Foyer> findByNomFoyer(String nomFoyer) {
+        return foyerRepository.findByNomFoyer(nomFoyer);}
+    @Override
+    public List<Foyer> extraireFoyerduBloc(String nomBloc) {
+        return foyerRepository.findByNomBloc(nomBloc);}
 
 }
+

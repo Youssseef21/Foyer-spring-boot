@@ -13,4 +13,6 @@ public interface IUniversiteService {
     Universite addUniversiteDandAssignToFoyer(Universite u, Long idF);
     Universite addUniversiteandFoyerANdAssignToFoyer(Universite u);
     Universite removeUniversiteFromFoyer(Long universityId);
+    List<Universite> findByNomUniversite(String nomUniversite);
+    int updateUniversiteByAdresse(String adresse, Long idUniversite);
 }

@@ -53,4 +53,11 @@ public class UniversiteController {
     Universite addUniversiteDandAssignToFoyer(@RequestBody Universite u, @PathVariable("idF") Long idF){
         return universiteService.addUniversiteDandAssignToFoyer(u,idF);
     }
+    @PutMapping("/update-universite-adresse/{adresse}/{idUniversite}")
+    int updateUniversiteByAdresse(@PathVariable("adresse") String adresse, @PathVariable("idUniversite") Long idUniversite){
+        return universiteService.updateUniversiteByAdresse(adresse,idUniversite);
+    }
+    @GetMapping("/get-universite-by-adresse/{Adresse}")
+    java.util.List<Universite> getUniversiteByNom(@PathVariable("Adresse") String nom) {
+        return universiteService.findByNomUniversite(nom);}
 }

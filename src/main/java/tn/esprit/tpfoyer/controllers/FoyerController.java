@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.services.IFoyerService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/foyerController")
 @Tag(name = "Foyer Management")
@@ -43,7 +45,13 @@ public class FoyerController {
     void removeFoyer(@PathVariable("id") Long id){
         foyerService.supprimerFoyer(id);
     }
-
+    @GetMapping("/get-foyer-by-nom/{nom}")
+    List<Foyer> getFoyerByNom(@PathVariable("nom") String nom) {
+        return foyerService.findByNomFoyer(nom);
+    }
+    @GetMapping("/get-foyer-by-bloc/{bloc}")
+    List<Foyer> getFoyerByBloc(@PathVariable("bloc") String bloc) {
+        return foyerService.extraireFoyerduBloc(bloc);}
 
 
 }
