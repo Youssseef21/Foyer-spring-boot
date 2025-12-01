@@ -17,4 +17,10 @@ public interface IChambreService {
     Chambre reserverChambre(Long idChambre, String idReservation);
     Chambre annulerReservation(Long idChambre, String idReservation);
     Optional<Chambre> findByNumeroChambre(Long numeroChambre);
+    
+    // Service 02: Pourcentage des chambres par type (toutes les 5 minutes)
+    void pourcentageChambreParTypeChambre();
+
+    // Service 03: Nombre de places disponibles par chambre pour l'année en cours (toutes les 5 minutes)
+    void nbPlacesDisponibleParChambreAnneeEnCours();
 }

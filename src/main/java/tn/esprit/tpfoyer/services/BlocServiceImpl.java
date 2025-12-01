@@ -1,7 +1,11 @@
 package tn.esprit.tpfoyer.services;
 
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import tn.esprit.tpfoyer.entity.Bloc;
+import tn.esprit.tpfoyer.entity.Chambre;
 import tn.esprit.tpfoyer.entity.Foyer;
 import tn.esprit.tpfoyer.repositories.BlocRepository;
 import tn.esprit.tpfoyer.repositories.FoyerRepository;
@@ -11,6 +15,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class BlocServiceImpl implements IBlocService {
     final BlocRepository blocRepository;
     final FoyerRepository foyerRepository;
@@ -93,5 +98,28 @@ public class BlocServiceImpl implements IBlocService {
     @Override
     public List<Bloc> findByNomBlocStartingWithAndCapaciteBlocGreaterThan(String start, int capacite) {
         return blocRepository.findByNomBlocStartingWithAndCapaciteBlocGreaterThan(start, capacite);
+    }
+    
+
+    @Override
+    @Scheduled(cron = "0 * * * * *")
+    @Transactional
+    public void listeChambresParBloc() {
+        List<Bloc> blocs = blocRepository.findAll();
+        
+        for (Bloc bloc : blocs) {
+            log.info("Bloc => " + bloc.getNomBloc() + " ayant une capacité " + bloc.getCapaciteBloc());
+            
+            if (bloc.getChambres() != null && !bloc.getChambres().isEmpty()) {
+                log.info("La liste des chambres pour ce bloc:");
+                for (Chambre chambre : bloc.getChambres()) {
+                    log.info("NumChambre: " + chambre.getNumeroChambre() + " type: " + chambre.getTypeC());
+                }
+            } else {
+                log.info("Pas de chambre disponible dans ce bloc");
+            }
+            
+            log.info("*******************");
+        }
     }
 }

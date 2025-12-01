@@ -22,4 +22,7 @@ public interface IBlocService {
     Bloc creerBlocAvecFoyer(Bloc bloc);
     Bloc affecterBlocAFoyer(Long idBloc, Long idFoyer);
     Bloc desaffecterBlocDeFoyer(Long idBloc);
+    
+    // Service 01: Liste des chambres par bloc (toutes les minutes)
+    void listeChambresParBloc();
 }
